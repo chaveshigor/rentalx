@@ -1,7 +1,7 @@
 import { Category } from "../../model/Category";
 import { ICategoryRepositories } from "../../repositories/interfaces/ICategoriesRepository";
 
-class CreateCategoryService {
+class CreateCategoryUseCase {
   private categoriesRepository: ICategoryRepositories;
 
   constructor(categoriesRepository: ICategoryRepositories) {
@@ -23,4 +23,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
