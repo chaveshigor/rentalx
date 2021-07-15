@@ -10,6 +10,9 @@ class CreateCategoryService {
 
   execute(name: string, description: string): Category {
     // const categoriesRepository = new CategoriesRepository();
+    if (!name || !description) {
+      throw new Error("all information about the category must be provided");
+    }
     const categoryAlreadyExists = this.categoriesRepository.findByName(name);
     if (categoryAlreadyExists) {
       throw new Error("category already exists");
