@@ -1,30 +1,20 @@
 import { Router } from "express";
 
-import { SpecificationsRepository } from "../modules/car/repositories/SpecificationsRepository";
-import { CreateSpecificationUseCase } from "../modules/car/useCases/CreateSpecification/CreateSpecificationUseCase";
-import { ListSpecificationsUseCase } from "../modules/car/useCases/ListSpecifications/ListSpecificationsUseCase";
+import { createSpecificationController } from "../modules/car/useCases/CreateSpecification";
 
 const speficicationsRoutes = Router();
 
-const specificationRepository = new SpecificationsRepository();
-
 speficicationsRoutes.post("/", (req, res) => {
-  const { name, description } = req.body;
-  const createSpecificationService = new CreateSpecificationUseCase(
-    specificationRepository
-  );
-  const newSpecification = createSpecificationService.execute(
-    name,
-    description
-  );
-
-  return res.status(201).json(newSpecification);
+  return createSpecificationController.handle(req, res);
 });
 
-speficicationsRoutes.get("/", (req, res) => {
-  const allSpecifications = ListSpecificationsUseCase(specificationRepository);
+// speficicationsRoutes.get("/", (req, res) => {
+//   const listSpecificationsUseCase = new ListSpecificationsUseCase(
+//     specificationRepository
+//   );
+//   const allSpecifications = listSpecificationsUseCase.execute();
 
-  return res.status(200).json(allSpecifications);
-});
+//   return res.status(200).json(allSpecifications);
+// });
 
 export { speficicationsRoutes };

@@ -1,16 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
 
 // Importing routes
-import { categoriesRoutes } from "./routes/categories.routes";
-import { speficicationsRoutes } from "./routes/specifications.routes";
+import { routes } from "./routes/index.routes";
 
 const app = express();
 
 app.use(express.json());
 
 // Using routes
-app.use("/categories", categoriesRoutes);
-app.use("/specifications", speficicationsRoutes);
+app.use(routes);
 
 // Error middleware
 app.use(

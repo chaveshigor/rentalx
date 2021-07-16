@@ -23,7 +23,6 @@ class SpecificationsRepository implements ISpecificationRepositories {
   }
 
   findByName(name: string): Specification {
-    console.log("findByName");
     const currentSpecification = this.specifications.find(
       (specif) => specif.name === name
     );

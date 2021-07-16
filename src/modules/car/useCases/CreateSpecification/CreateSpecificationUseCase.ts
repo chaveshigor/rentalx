@@ -1,6 +1,5 @@
 import { Specification } from "../../model/Specification";
 import { ISpecificationRepositories } from "../../repositories/interfaces/ISpecificationsRepository";
-import { SpecificationsRepository } from "../../repositories/SpecificationsRepository";
 
 class CreateSpecificationUseCase {
   private specificationRepository: ISpecificationRepositories;
