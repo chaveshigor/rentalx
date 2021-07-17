@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentAlx API documentation",
+        "description": "This is the API from the RentAPI app",
+        "version": "1.0.0",
+        "contact": {
+            "email": "hhigorsilvachaves@gmail.com"
+        }
+    }
+}

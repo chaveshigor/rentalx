@@ -1,11 +1,16 @@
 import express, { Request, Response, NextFunction } from "express";
+import swaggerUi from "swagger-ui-express";
 
+import swaggerJson from "../swagger.json";
 // Importing routes
 import { routes } from "./routes/index.routes";
 
 const app = express();
 
 app.use(express.json());
+
+// Setting documentation
+app.use("/api-Docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 // Using routes
 app.use(routes);
