@@ -1,20 +1,22 @@
-import { Specification } from "../../model/Specification";
+import { inject, injectable } from "tsyringe";
+
+import { Specification } from "../../entities/Specification";
 import { ISpecificationRepositories } from "../../repositories/interfaces/ISpecificationsRepository";
 
+@injectable()
 class CreateSpecificationUseCase {
-  private specificationRepository: ISpecificationRepositories;
+  constructor(
+    @inject("SpecificationsRepository")
+    private specificationRepository: ISpecificationRepositories
+  ) {}
 
-  constructor(specificationRepository: ISpecificationRepositories) {
-    this.specificationRepository = specificationRepository;
-  }
-
-  execute(name: string, description: string): Specification {
+  async execute(name: string, description: string): Promise<Specification> {
     if (!name || !description) {
       throw new Error(
         "all information about the specification must be provided"
       );
     }
-    const newSpecification = this.specificationRepository.create({
+    const newSpecification = await this.specificationRepository.create({
       name,
       description,
     });

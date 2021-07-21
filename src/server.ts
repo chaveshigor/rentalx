@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import "./database/index";
+import "./shared/container";
 import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 
@@ -9,11 +12,11 @@ const app = express();
 
 app.use(express.json());
 
-// Setting documentation
-app.use("/api-Docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
-
 // Using routes
 app.use(routes);
+
+// Setting documentation
+app.use("/api-Docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 // Error middleware
 app.use(
