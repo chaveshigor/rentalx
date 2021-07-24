@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/appError";
 import { Specification } from "../../entities/Specification";
 import { ISpecificationRepositories } from "../../repositories/interfaces/ISpecificationsRepository";
 
@@ -12,7 +13,7 @@ class CreateSpecificationUseCase {
 
   async execute(name: string, description: string): Promise<Specification> {
     if (!name || !description) {
-      throw new Error(
+      throw new AppError(
         "all information about the specification must be provided"
       );
     }
