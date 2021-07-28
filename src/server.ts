@@ -22,12 +22,7 @@ app.use("/api-Docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 // Error middleware
 app.use(
-  (
-    err: AppError,
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Response => {
+  (err: Error, req: Request, res: Response, next: NextFunction): Response => {
     if (err instanceof AppError) {
       return res.status(err.statusCode).json({
         status: "error",
@@ -37,7 +32,7 @@ app.use(
 
     return res.status(500).json({
       status: "error",
-      description: "error not expected",
+      description: `error not expected - ${err.message}`,
     });
   }
 );

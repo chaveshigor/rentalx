@@ -3,6 +3,7 @@ interface ICreateUser {
   password: string;
   email: string;
   driver_license: string;
+  avatar?: string;
 }
 
 interface IFindOne {
@@ -13,10 +14,19 @@ interface IFindOne {
   driver_license?: string;
 }
 
+interface IUpdateById {
+  name?: string;
+  password?: string;
+  email?: string;
+  admin?: boolean;
+  avatar: string;
+  driver_license?: string;
+}
+
 interface IRequestAuth {
   email?: string;
   driver_license?: string;
   password: string;
 }
 
-export { ICreateUser, IFindOne, IRequestAuth };
+export { ICreateUser, IFindOne, IRequestAuth, IUpdateById };

@@ -30,6 +30,10 @@ async function ensureAuth(
         error: "Invalid user",
       });
     }
+
+    req.user = {
+      id: user_id,
+    };
   } catch (error) {
     return res.status(400).json({
       error: "Invalid token",

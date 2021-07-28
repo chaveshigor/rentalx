@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 
 import { User } from "../entities/User";
-import { ICreateUser, IFindOne } from "../interfaces";
+import { ICreateUser, IFindOne, IUpdateById } from "../interfaces";
 import { IUsersRepository } from "./IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
@@ -10,6 +10,15 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repo = getRepository(User);
   }
+
+  async updateById(id: string, userData: IUpdateById): Promise<User> {
+    await this.repo.update({ id }, userData);
+
+    const user = await this.repo.findOne(id);
+
+    return user;
+  }
+
   async create({
     name,
     email,
