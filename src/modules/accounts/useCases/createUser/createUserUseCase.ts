@@ -1,10 +1,10 @@
 import { genSalt, hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/appError";
-import { User } from "../../entities/User";
-import { ICreateUser } from "../../interfaces";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { ICreateUser } from "@modules/accounts/interfaces";
+import { IUsersRepository } from "@modules/accounts/interfaces/IUsersRepository";
+import { AppError } from "@shared/errors/appError";
 
 @injectable()
 class CreateUserUseCase {

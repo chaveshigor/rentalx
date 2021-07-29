@@ -1,8 +1,8 @@
-import { Category } from "../entities/Category";
 import {
   ICategoryRepositories,
   ICreateCategoryDTO,
-} from "./interfaces/ICategoriesRepository";
+} from "../../../interfaces/ICategoriesRepository";
+import { Category } from "../../typeorm/entities/Category";
 
 class CategoryRepositoryInMemory implements ICategoryRepositories {
   private repo: Category[];

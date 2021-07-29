@@ -2,9 +2,9 @@ import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/appError";
-import { IRequestAuth } from "../../interfaces";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { IRequestAuth } from "@modules/accounts/interfaces";
+import { IUsersRepository } from "@modules/accounts/interfaces/IUsersRepository";
+import { AppError } from "@shared/errors/appError";
 
 interface IResponse {
   user: {
@@ -33,8 +33,8 @@ class AuthUserUseCase {
     if (!validPassword) {
       throw new AppError("User or password incorrect", 401);
     }
-
-    const token = sign({}, process.env.APP_SECRETKEY, {
+    const secret = process.env.APP_SECRETKEY || "secret";
+    const token = sign({}, secret, {
       subject: checkIfUserExists.id,
       expiresIn: "1d",
     });

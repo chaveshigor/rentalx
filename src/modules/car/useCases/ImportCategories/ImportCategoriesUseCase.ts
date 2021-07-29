@@ -2,8 +2,8 @@ import csvParse from "csv-parse";
 import fs from "fs";
 import { inject, injectable } from "tsyringe";
 
-import { deleteFile } from "../../../../shared/file";
-import { ICategoryRepositories } from "../../repositories/interfaces/ICategoriesRepository";
+import { ICategoryRepositories } from "@modules/car/interfaces/ICategoriesRepository";
+import { deleteFile } from "@shared/file";
 
 interface ICategory {
   name: string;

@@ -1,8 +1,8 @@
 import { getRepository, Repository } from "typeorm";
 
+import { ICreateUser, IFindOne, IUpdateById } from "../../../interfaces";
+import { IUsersRepository } from "../../../interfaces/IUsersRepository";
 import { User } from "../entities/User";
-import { ICreateUser, IFindOne, IUpdateById } from "../interfaces";
-import { IUsersRepository } from "./IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
   private repo: Repository<User>;

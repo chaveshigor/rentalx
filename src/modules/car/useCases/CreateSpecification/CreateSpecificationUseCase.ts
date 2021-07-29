@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/appError";
-import { Specification } from "../../entities/Specification";
-import { ISpecificationRepositories } from "../../repositories/interfaces/ISpecificationsRepository";
+import { Specification } from "@modules/car/infra/typeorm/entities/Specification";
+import { ISpecificationRepositories } from "@modules/car/interfaces/ISpecificationsRepository";
+import { AppError } from "@shared/errors/appError";
 
 @injectable()
 class CreateSpecificationUseCase {

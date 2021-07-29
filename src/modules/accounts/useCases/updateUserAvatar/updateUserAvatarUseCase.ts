@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { deleteFile } from "../../../../shared/file";
-import { User } from "../../entities/User";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { IUsersRepository } from "@modules/accounts/interfaces/IUsersRepository";
+import { deleteFile } from "@shared/file";
 
 interface IRequestNewAvatar {
   user_id: string;

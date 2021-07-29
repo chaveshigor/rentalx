@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/appError";
-import { Category } from "../../entities/Category";
-import { ICategoryRepositories } from "../../repositories/interfaces/ICategoriesRepository";
+import { Category } from "@modules/car/infra/typeorm/entities/Category";
+import { ICategoryRepositories } from "@modules/car/interfaces/ICategoriesRepository";
+import { AppError } from "@shared/errors/appError";
 
 @injectable()
 class CreateCategoryUseCase {
