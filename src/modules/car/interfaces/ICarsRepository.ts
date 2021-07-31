@@ -1,5 +1,5 @@
 import { Car } from "../infra/typeorm/entities/Car";
-import { IRequestCreateCar } from "./interfaces";
+import { IListCars, IRequestCreateCar } from "./interfaces";
 
 interface ICarsRepository {
   create({
@@ -13,6 +13,7 @@ interface ICarsRepository {
   }: IRequestCreateCar): Promise<Car>;
 
   findByLicensePlate(license_plate: string): Promise<Car>;
+  listAvailableCars(listData?: IListCars): Promise<Car[]>;
 }
 
 export { ICarsRepository };

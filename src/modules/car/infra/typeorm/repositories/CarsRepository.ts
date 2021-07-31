@@ -1,7 +1,10 @@
 import { getRepository, Repository } from "typeorm";
 
 import { ICarsRepository } from "@modules/car/interfaces/ICarsRepository";
-import { IRequestCreateCar } from "@modules/car/interfaces/interfaces";
+import {
+  IListCars,
+  IRequestCreateCar,
+} from "@modules/car/interfaces/interfaces";
 
 import { Car } from "../entities/Car";
 
@@ -10,6 +13,24 @@ class CarsRepository implements ICarsRepository {
 
   constructor() {
     this.repo = getRepository(Car);
+  }
+
+  async listAvailableCars(listData?: IListCars): Promise<Car[]> {
+    let cars = await this.repo.find({ where: { available: true } });
+
+    if (listData) {
+      if (listData.category_id) {
+        cars = cars.filter((car) => car.category_id === listData.category_id);
+      }
+      if (listData.brand) {
+        cars = cars.filter((car) => car.brand === listData.brand);
+      }
+      if (listData.name) {
+        cars = cars.filter((car) => car.name === listData.name);
+      }
+    }
+
+    return cars;
   }
 
   async create({

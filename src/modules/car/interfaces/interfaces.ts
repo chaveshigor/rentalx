@@ -9,4 +9,10 @@ interface IRequestCreateCar {
   available?: boolean;
 }
 
-export { IRequestCreateCar };
+interface IListCars {
+  name?: string;
+  brand?: string;
+  category_id?: string;
+}
+
+export { IRequestCreateCar, IListCars };
