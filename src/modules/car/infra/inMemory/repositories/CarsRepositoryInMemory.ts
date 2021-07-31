@@ -13,6 +13,12 @@ class CarsRepositoryInMemory implements ICarsRepository {
     this.repo = [];
   }
 
+  async findById(id: string): Promise<Car> {
+    const car = this.repo.find((car) => car.id === id);
+
+    return car;
+  }
+
   async listAvailableCars(listData?: IListCars): Promise<Car[]> {
     let cars = this.repo.filter((car) => car.available === true);
 

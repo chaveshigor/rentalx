@@ -13,6 +13,7 @@ interface ICarsRepository {
   }: IRequestCreateCar): Promise<Car>;
 
   findByLicensePlate(license_plate: string): Promise<Car>;
+  findById(id: string): Promise<Car>;
   listAvailableCars(listData?: IListCars): Promise<Car[]>;
 }
 
