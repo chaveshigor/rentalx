@@ -8,6 +8,16 @@ let usersRepository: UsersRepositoryInMemory;
 let authUserUseCase: AuthUserUseCase;
 let createUserUseCase: CreateUserUseCase;
 
+interface IResponse {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    driver_license: string;
+  };
+  token: string;
+}
+
 describe("User authentication", () => {
   const userSeed = {
     name: "higor",
@@ -39,7 +49,7 @@ describe("User authentication", () => {
 
   it("should not authenticate an unexistent user", async () => {
     const { password } = userSeed;
-    let userInfo;
+    let userInfo: IResponse | undefined;
 
     try {
       userInfo = await authUserUseCase.execute({
@@ -57,9 +67,9 @@ describe("User authentication", () => {
   it("should not authenticate an user with a wrong password", async () => {
     expect(async () => {
       const { email } = userSeed;
-      const userInfo = await authUserUseCase.execute({
+      await authUserUseCase.execute({
         email,
-        password: "123456",
+        password: "wrong password",
       });
     }).rejects.toBeInstanceOf(AppError);
   });

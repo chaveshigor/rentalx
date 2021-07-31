@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
+import { AppError } from "@shared/errors/appError";
+
 import { UsersRepository } from "../../../../modules/accounts/infra/typeorm/repositories/usersRepository";
 
 interface IPayload {
@@ -13,6 +15,10 @@ async function ensureAuth(
   next: NextFunction
 ): Promise<Response | void> {
   const { authorization } = req.headers;
+
+  if (!authorization) {
+    throw new AppError("invalid token", 401);
+  }
 
   const token = authorization.split(" ")[1];
 

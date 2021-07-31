@@ -1,13 +1,12 @@
-import { createConnection, getConnectionOptions } from "typeorm";
+import { Connection, createConnection, getConnectionOptions } from "typeorm";
 
-interface IOptions {
-  host: string;
-}
-
-getConnectionOptions().then((options) => {
-  const newOptions = options as IOptions;
-  newOptions.host = "db"; // Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
-  createConnection({
-    ...options,
+const newConnection = async (host = "db"): Promise<Connection> => {
+  const options = await getConnectionOptions();
+  Object.assign(options, {
+    host,
   });
-});
+  const connection = await createConnection(options);
+  return connection;
+};
+
+export { newConnection };
